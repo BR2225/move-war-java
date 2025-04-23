@@ -7,16 +7,15 @@ pipeline {
         VM_HOST = '35.223.65.37'
         VM_USER = 'pre-prod-stage'
     }
-    stages {
-        stage('Download from GCS') {
-            steps {
-                withCredentials([file(credentialsId: 'gcp-sa-json', variable: 'vm-ssh-key')]) {    // key is ssh key
-                    bat '''
-                        gcloud auth activate-service-account --key-file=$GC_KEY
-                        gsutil cp gs://${GCS_BUCKET}/${GCS_FILE} ./${LOCAL_FILE}
-                    '''
-                }
+           stage('Download from GCS') {
+          steps {
+            withCredentials([file(credentialsId: 'gcp-sa-json', variable: 'gcp-sa-json')]) {
+              bat '''
+                gcloud auth activate-service-account --key-file=%GC_KEY%
+                gsutil cp gs://${GCS_BUCKET}/${GCS_FILE} .\\${LOCAL_FILE}
+              '''
             }
+          }
         }
         stage('Deploy to VM') {
             steps {
