@@ -8,13 +8,6 @@ pipeline {
         WAR_NAME = 'move-war-java.war'
     }
 
-    stages {
-
-        stage('Clone Repository') {
-            steps {
-                git url: 'https://github.com/BR2225/move-war-java.git'
-            }
-        }
 
         stage('Build WAR File') {
             steps {
