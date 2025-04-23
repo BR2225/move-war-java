@@ -13,7 +13,7 @@ pipeline {
         stage('Download from GCS') {
             steps {
                 withCredentials([file(credentialsId: 'gcp-sa-json', variable: 'gcp-sa-json')]) {
-                    bat '''
+                    sh '''
                         gcloud auth activate-service-account --key-file=%GC_KEY%
                         gsutil cp gs://%GCS_BUCKET%/%GCS_FILE% .\\%LOCAL_FILE%
                     '''
@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy to VM') {
             steps {
                 sshagent(['vm-ssh-key']) {
-                    bat """
+                    sh """
                        gcloud auth activate-service-account --key-file=%GC_KEY%
                         gcloud config set project your-gcp-project-id
                         gcloud compute scp %LOCAL_FILE% ${env.VM_USER}@${env.VM_HOST}:/tmp/ --zone=your-vm-zone --quiet
