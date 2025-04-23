@@ -26,9 +26,9 @@ pipeline {
                 sshagent(['vm-ssh-key']) {
                     sh '''
                        gcloud auth activate-service-account --key-file=%GC_KEY%
-                        gcloud config set project your-gcp-project-id
-                        gcloud compute scp %LOCAL_FILE% ${env.VM_USER}@${env.VM_HOST}:/tmp/ --zone=your-vm-zone --quiet
-                        gcloud compute ssh ${env.VM_USER}@${env.VM_HOST} --zone=your-vm-zone --command="sudo mv /tmp/%LOCAL_FILE% /opt/tomcat/webapps/ && sudo systemctl restart tomcat" --quiet
+                        gcloud config set project citric-lead-457511-m7
+                        gcloud compute scp %LOCAL_FILE% ${env.VM_USER}@${env.VM_HOST}:/tmp/ --zone=us-central1-c --quiet
+                        gcloud compute ssh ${env.VM_USER}@${env.VM_HOST} --zone=us-central1-c --command="sudo mv /tmp/%LOCAL_FILE% /opt/tomcat/webapps/ && sudo systemctl restart tomcat" --quiet
                     '''
                 }
             }
