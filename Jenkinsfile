@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GCS_BUCKET = ' pre-prod-store'
+        GCS_BUCKET = 'pre-prod-store'
         VM_HOST = '35.223.65.37' 
         VM_USER = 'pre-prod-stage'
         WAR_NAME = 'move-war-java.war'
