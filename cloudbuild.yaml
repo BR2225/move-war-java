@@ -1,0 +1,16 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    id: Build
+    args: ['build', '-t', 'gcr.io/inductive-gift-456306-h4/move-war-java', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: push
+    args: ['push', 'gcr.io/inductive-gift-456306-h4/move-war-java']
+
+images:
+  - 'gcr.io/inductive-gift-456306-h4/move-war-java'
+  
+logsBucket: gs://build-logs-watchful-2/
+
+options:
+  logging: GCS_ONLY
