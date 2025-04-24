@@ -1,11 +1,11 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     id: Build
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/inductive-gift-456306-h4/move-war-java', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/inductive-gift-456306-h4/move-war-java/move-war-java:latest', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
     id: push
-    args: ['push', 'us-central1-docker.pkg.dev/inductive-gift-456306-h4/move-war-java']
+    args: ['push', 'us-central1-docker.pkg.dev/inductive-gift-456306-h4/move-war-java/move-war-java:latest']
 
 images:
   - 'us-central1-docker.pkg.dev/inductive-gift-456306-h4/move-war-java'
