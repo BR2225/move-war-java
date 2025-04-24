@@ -21,7 +21,8 @@ FROM eclipse-temurin:17
 
 # Copy the WAR file from the build stage to Tomcat's webapps directory
 
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/target/jb-hello-world-maven-0.2.0.jar app.jar
+
 
 EXPOSE 8080
 
