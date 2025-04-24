@@ -20,11 +20,10 @@ FROM eclipse-temurin:17
 
 
 # Copy the WAR file from the build stage to Tomcat's webapps directory
-COPY --from=build /app/target/move-war-java.war /usr/local/tomcat/webapps/ROOT.war
 
-# Expose port 8080
+COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8080
 
-# Start Tomcat
-CMD ["catalina.sh", "run"]
+CMD ["java", "-jar", "app.jar"]
 
